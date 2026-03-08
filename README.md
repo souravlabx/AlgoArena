@@ -1,124 +1,78 @@
-# AlgoArena
-Interactive Algorithm Visualizer Comparator
-
 ⚡ AlgoArena
 Interactive Algorithm Visualizer & Comparator
-
-AlgoArena is a modern web-based algorithm visualizer that helps users understand how algorithms work through interactive animations and live comparisons.
-
-The project allows users to visualize algorithms step-by-step, observe how data structures change during execution, and compare algorithm performance in real time.
-
+AlgoArena is a modern web-based algorithm visualizer that helps users understand how algorithms work through interactive animations and real-time comparisons.
+It allows users to visualize algorithms step-by-step while tracking performance metrics like comparisons, swaps, and execution time.
+________________________________________
 🚀 Live Demo
+The project is deployed using GitHub Pages.
 https://souravlabx.github.io/AlgoArena/
-
+________________________________________
 📸 Project Preview
 Algorithm Visualizer
-<p align="center"> <img src="visualizer.png" width="850"> </p>
+<p align="center"> <img src="visualizer.png" width="850"> </p> 
 Algorithm Comparison Mode
-<p align="center"> <img src="compare.png" width="850"> </p>
-Graph Algorithm Visualization
-<p align="center"> <img src="graph.png" width="850"> </p>
+<p align="center"> <img src="compare.png" width="850"> </p> 
+Graph Algorithms
+<p align="center"> <img src="graph.png" width="850"> </p> 
+________________________________________
 ✨ Features
-
-Interactive algorithm visualization
-
-16+ algorithms implemented
-
-Live algorithm comparison system
-
-Adjustable array size
-
-Adjustable animation speed
-
+•	Interactive algorithm visualization
+•	16+ algorithms implemented
+•	Live algorithm comparison system
+•	Adjustable array size
+•	Adjustable animation speed
 Real-time statistics
-
-comparisons
-
-swaps
-
-execution time
-
-Graph algorithm visualization
-
-Modern animated UI
-
-Educational explanations for algorithms
-
+•	Comparisons
+•	Swaps
+•	Execution time
+•	Graph algorithm visualization
+•	Modern animated UI
+•	Educational algorithm explanation system
+________________________________________
 🧠 Algorithms Implemented
 Sorting Algorithms
-
-Bubble Sort
-
-Selection Sort
-
-Insertion Sort
-
-Merge Sort
-
-Quick Sort
-
-Heap Sort
-
+•	Bubble Sort
+•	Selection Sort
+•	Insertion Sort
+•	Merge Sort
+•	Quick Sort
+•	Heap Sort
+________________________________________
 Searching Algorithms
-
-Linear Search
-
-Binary Search
-
+•	Linear Search
+•	Binary Search
+________________________________________
 Graph Algorithms
-
-Breadth First Search (BFS)
-
-Depth First Search (DFS)
-
-Dijkstra's Algorithm
-
-Minimum Spanning Tree
-
+•	Breadth First Search (BFS)
+•	Depth First Search (DFS)
+•	Dijkstra's Algorithm
+•	Minimum Spanning Tree
+________________________________________
 ⚔️ Compare Mode
-
-AlgoArena includes a live comparison system where two algorithms can run simultaneously.
-
+AlgoArena includes a live comparison system where two algorithms run simultaneously.
 Users can compare:
-
-execution time
-
-number of comparisons
-
-number of swaps
-
-algorithm efficiency
-
-This feature helps visually demonstrate time complexity differences between algorithms.
-
+•	Execution time
+•	Number of comparisons
+•	Number of swaps
+•	Overall algorithm efficiency
+This helps visually demonstrate time complexity differences between algorithms.
+________________________________________
 🎛 User Controls
-
-The interface includes several interactive controls:
-
-Algorithm selector
-
-Array size slider
-
-Speed controller
-
-Run / Reset buttons
-
-Sound toggle
-
-Compare mode switch
-
+The interface provides multiple interactive controls:
+•	Algorithm selector
+•	Array size slider
+•	Speed controller
+•	Run / Reset buttons
+•	Sound toggle
+•	Compare mode switch
+________________________________________
 🛠 Tech Stack
-
-Frontend technologies used:
-
-HTML5
-
-CSS3
-
-JavaScript (Vanilla JS)
-
+This project is built using:
+•	HTML5
+•	CSS3
+•	JavaScript (Vanilla JS)
 No external frameworks are used — everything is implemented from scratch.
-
+________________________________________
 📂 Project Structure
 AlgoArena
 │
@@ -129,16 +83,15 @@ AlgoArena
 ├── compare.png
 ├── graph.png
 └── README.md
+________________________________________
 🎯 Purpose of the Project
-
 This project was built to:
+•	Improve understanding of Data Structures & Algorithms
+•	Provide an interactive learning tool
+•	Visualize algorithm behavior step-by-step
+•	Demonstrate algorithm performance and complexity
+•	Practice frontend development using JavaScript
 
-Improve understanding of Data Structures & Algorithms
+👨‍💻 Author
+Sourav Ray
 
-Provide an interactive learning tool
-
-Visualize algorithm behavior step-by-step
-
-Demonstrate algorithm time complexity and efficiency
-
-Practice frontend development using JavaScript
