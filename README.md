@@ -17,6 +17,7 @@ Graph Algorithms
 
 ________________________________________
 ✨ Features
+
 •	Interactive algorithm visualization
 •	16+ algorithms implemented
 •	Live algorithm comparison system
@@ -32,6 +33,7 @@ Real-time statistics
 
 ________________________________________
 🧠 Algorithms Implemented
+
 Sorting Algorithms
 •	Bubble Sort
 •	Selection Sort
@@ -42,11 +44,13 @@ Sorting Algorithms
 
 ________________________________________
 Searching Algorithms
+
 •	Linear Search
 •	Binary Search
 
 ________________________________________
 Graph Algorithms
+
 •	Breadth First Search (BFS)
 •	Depth First Search (DFS)
 •	Dijkstra's Algorithm
@@ -56,6 +60,7 @@ ________________________________________
 ⚔️ Compare Mode
 AlgoArena includes a live comparison system where two algorithms run simultaneously.
 Users can compare:
+
 •	Execution time
 •	Number of comparisons
 •	Number of swaps
@@ -75,9 +80,10 @@ The interface provides multiple interactive controls:
 ________________________________________
 🛠 Tech Stack
 This project is built using:
+
 •	HTML5
 •	CSS3
-•	JavaScript (Vanilla JS)
+•	JavaScript 
 No external frameworks are used — everything is implemented from scratch.
 
 ________________________________________
@@ -95,6 +101,7 @@ AlgoArena
 ________________________________________
 🎯 Purpose of the Project
 This project was built to:
+
 •	Improve understanding of Data Structures & Algorithms
 •	Provide an interactive learning tool
 •	Visualize algorithm behavior step-by-step
