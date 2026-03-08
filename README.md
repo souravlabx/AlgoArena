@@ -141,7 +141,8 @@ https://github.com/souravlabx
 If you found this project useful, consider giving it a ⭐ on GitHub.
 
 # 📂 Project Structure
----AlgoArena
+
+AlgoArena
 │
 ├── index.html
 ├── style.css
@@ -150,4 +151,3 @@ If you found this project useful, consider giving it a ⭐ on GitHub.
 ├── compare.png
 ├── graph.png
 └── README.md
-
