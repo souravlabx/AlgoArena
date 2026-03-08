@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm Visualizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ── Header ── -->
+ <header class="hero">
+
+  <div class="logo-badge">
+    INTERACTIVE TOOL
+  </div>
+
+  <h1 class="hero-title">
+    AlgoArena
+  </h1>
+
+  <p class="hero-subtitle">
+    Interactive Algorithm Visualizer & Comparator
+  </p>
+
+  <div class="hero-features">
+    <span>16+ Algorithms</span>
+    <span>•</span>
+    <span>Live Comparison</span>
+    <span>•</span>
+    <span>Algorithm Race</span>
+    <span>•</span>
+    <span>Graph Visualization</span>
+  </div>
+
+</header>
+
+  <!-- ── Mode Tabs ── -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tabSingle"  onclick="switchMode('single')">⊛ Single</button>
+    <button class="mode-tab"        id="tabCompare" onclick="switchMode('compare')">⚖️ Compare</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SINGLE MODE
+  ══════════════════════════════════════ -->
+  <div id="singleMode">
+
+    <div class="panel">
+      <div class="controls-row">
+        <div class="algo-selector" id="algoSelector">
+          <div class="algo-display" id="algoDisplay" onclick="toggleDropdown()">
+            <span id="algoDisplayText">▸ Select an algorithm</span>
+            <span class="arrow">▾</span>
+          </div>
+          <div class="dropdown" id="dropdown">
+            <div class="dropdown-section">
+              <div class="dropdown-label">⬚ Sorting</div>
+              <div class="dropdown-item" onclick="selectAlgo('bubble')">Bubble Sort <span class="complexity">O(n²)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('selection')">Selection Sort <span class="complexity">O(n²)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('insertion')">Insertion Sort <span class="complexity">O(n²)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('shell')">Shell Sort <span class="complexity">O(n log²n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('merge')">Merge Sort <span class="complexity">O(n log n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('quick')">Quick Sort <span class="complexity">O(n log n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('heap')">Heap Sort <span class="complexity">O(n log n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('counting')">Counting Sort <span class="complexity">O(n+k)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('radix')">Radix Sort <span class="complexity">O(nk)</span></div>
+            </div>
+            <div class="divider"></div>
+            <div class="dropdown-section">
+              <div class="dropdown-label">⌕ Searching</div>
+              <div class="dropdown-item" onclick="selectAlgo('linear')">Linear Search <span class="complexity">O(n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('binary')">Binary Search <span class="complexity">O(log n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('jump')">Jump Search <span class="complexity">O(√n)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('interpolation')">Interpolation Search <span class="complexity">O(log log n)</span></div>
+            </div>
+            <div class="divider"></div>
+            <div class="dropdown-section">
+              <div class="dropdown-label">⬡ Graph — Traversal</div>
+              <div class="dropdown-item" onclick="selectAlgo('bfs')">BFS — Breadth First <span class="complexity">O(V+E)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('dfs')">DFS — Depth First <span class="complexity">O(V+E)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('dijkstra')">Dijkstra Shortest <span class="complexity">O((V+E)logV)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('astar')">A* Search <span class="complexity">O(E log V)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('bellmanford')">Bellman-Ford <span class="complexity">O(VE)</span></div>
+            </div>
+            <div class="divider"></div>
+            <div class="dropdown-section">
+              <div class="dropdown-label">🌲 Graph — MST</div>
+              <div class="dropdown-item" onclick="selectAlgo('prim')">Prim's MST <span class="complexity">O(E log V)</span></div>
+              <div class="dropdown-item" onclick="selectAlgo('kruskal')">Kruskal's MST <span class="complexity">O(E log E)</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary"   id="runBtn"   onclick="runAlgorithm()" disabled>▶ Run</button>
+        <button class="btn btn-warning"   id="pauseBtn" onclick="togglePause()" style="display:none"><span id="pauseIcon">⏸</span><span id="pauseLabel"> Pause</span></button>
+        <button class="btn btn-danger"    id="stopBtn"  onclick="stopAlgorithm()" style="display:none">■ Stop</button>
+        <button class="btn btn-secondary" id="newBtn"   onclick="handleNew()">↻ <span id="newBtnLabel">New Array</span></button>
+        <button class="btn btn-sound"     id="soundBtn" onclick="toggleSound()" title="Toggle sound">🔊</button>
+      </div>
+      <div class="controls-row">
+        <div class="slider-group">
+          <span class="slider-label">SIZE</span>
+          <input type="range" id="sizeSlider" min="10" max="100" value="40" oninput="onSizeChange(this.value)" />
+          <span class="slider-val" id="sizeVal">40</span>
+        </div>
+        <div class="slider-group">
+          <span class="slider-label">SPEED</span>
+          <input type="range" id="speedSlider" min="1" max="10" value="5" />
+          <span class="slider-val" id="speedVal" style="color:var(--accent2)">5</span>
+        </div>
+      </div>
+      <div class="search-target-wrap" id="searchTargetWrap">
+        <label>Search Target:</label>
+        <input type="number" class="search-target-input" id="searchTarget" placeholder="e.g. 42" />
+        <span class="info-hint">* Array sorted for binary/jump/interpolation</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-label" id="stat1Label">Comparisons</span><span class="stat-value" id="comparisons">0</span></div>
+        <div class="stat"><span class="stat-label" id="stat2Label">Swaps / Ops</span><span class="stat-value" id="swaps" style="color:var(--accent2)">0</span></div>
+        <div class="stat"><span class="stat-label">Time Elapsed</span><span class="stat-value" id="elapsed" style="color:var(--accent4)">0ms</span></div>
+      </div>
+      <div class="status-bar" id="statusBar">
+        <div class="status-dot"></div>
+        <span id="statusText">Select an algorithm and click Run to begin</span>
+      </div>
+      <div class="step-display" id="stepDisplay">
+        <span class="step-icon">⊙</span>
+        <span id="stepText">Waiting…</span>
+      </div>
+    </div>
+
+    <!-- Graph Editor Toolbar -->
+    <div class="graph-toolbar" id="graphToolbar" style="display:none">
+      <span class="graph-toolbar-label">Graph Editor</span>
+      <button class="btn-editor" id="btnAddNode"    onclick="setEditorMode('addNode')">＋ Node</button>
+      <button class="btn-editor" id="btnAddEdge"    onclick="setEditorMode('addEdge')">↔ Edge</button>
+      <button class="btn-editor" id="btnDelNode"    onclick="setEditorMode('delete')">🗑 Delete</button>
+      <button class="btn-editor" id="btnClearGraph" onclick="clearGraph()">✕ Clear</button>
+      <button class="btn-editor" id="btnRandomGraph" onclick="buildGraph()">⊞ Random</button>
+      <span class="editor-hint" id="editorHint">Click canvas to start editing</span>
+    </div>
+
+    <!-- Visualizer -->
+    <div class="visualizer-wrap" id="vizWrap">
+      <div class="vis-header">
+        <span class="vis-title">Visualization Canvas</span>
+        <span id="algoTag" class="algo-tag" style="display:none"></span>
+      </div>
+      <div id="canvas-container"></div>
+      <canvas id="graphCanvas"></canvas>
+      <div class="legend" id="barLegend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bar-default)"></div>Unsorted</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Active</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bar-compare)"></div>Comparing</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bar-sorted)"></div>Sorted</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bar-pivot)"></div>Pivot</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>Found</div>
+      </div>
+      <div class="legend" id="graphLegend" style="display:none">
+        <div class="legend-item"><div class="legend-dot" style="background:#1a4a6e"></div>Unvisited</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Current</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent2)"></div>Queue/Stack</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bar-sorted)"></div>Visited</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent4)"></div>Path / MST</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>Rejected</div>
+      </div>
+    </div>
+
+    <div class="complexity-panel" id="complexityPanel">
+      <div class="complexity-title" id="complexityTitle"></div>
+      <div class="complexity-grid"  id="complexityGrid"></div>
+    </div>
+
+    <!-- Algorithm Details -->
+    <div class="details-panel" id="detailsPanel">
+      <div class="details-header">
+        <div class="details-header-left">
+          <span class="details-icon" id="detailsIcon">⊛</span>
+          <div>
+            <div class="details-algo-name" id="detailsName"></div>
+            <div class="details-algo-type" id="detailsType"></div>
+          </div>
+        </div>
+        <div class="details-badges" id="detailsBadges"></div>
+      </div>
+      <div class="details-section"><div class="details-section-title">📖 What is it?</div><p class="details-text" id="detailsWhat"></p></div>
+      <div class="details-section"><div class="details-section-title">⚙️ How it works</div><ol class="details-steps" id="detailsHow"></ol></div>
+      <div class="details-section"><div class="details-section-title">💡 Real-world analogy</div><div class="details-analogy" id="detailsAnalogy"></div></div>
+      <div class="details-two-col">
+        <div class="details-section"><div class="details-section-title">✅ Pros</div><ul class="details-list pros" id="detailsPros"></ul></div>
+        <div class="details-section"><div class="details-section-title">❌ Cons</div><ul class="details-list cons" id="detailsCons"></ul></div>
+      </div>
+      <div class="details-section"><div class="details-section-title">🎯 When to use</div><p class="details-text" id="detailsWhen"></p></div>
+      <div class="details-section"><div class="details-section-title">📝 Pseudocode</div><pre class="details-code" id="detailsCode"></pre></div>
+      <div class="details-funfact" id="detailsFunFact"></div>
+    </div>
+
+  </div><!-- /#singleMode -->
+
+  <!-- ══════════════════════════════════════
+       COMPARE MODE
+  ══════════════════════════════════════ -->
+  <div id="compareMode" style="display:none">
+
+    <div class="compare-controls panel">
+      <div class="controls-row">
+        <div class="slider-group">
+          <span class="slider-label">SIZE</span>
+          <input type="range" id="cmpSizeSlider" min="10" max="80" value="40" oninput="onCmpSizeChange(this.value)" />
+          <span class="slider-val" id="cmpSizeVal">40</span>
+        </div>
+        <div class="slider-group">
+          <span class="slider-label">SPEED</span>
+          <input type="range" id="cmpSpeedSlider" min="1" max="10" value="5" />
+          <span class="slider-val" id="cmpSpeedVal" style="color:var(--accent2)">5</span>
+        </div>
+        <button class="btn btn-primary"   id="cmpRunBtn"  onclick="runComparison()" disabled>▶ Run Both</button>
+        <button class="btn btn-danger"    id="cmpStopBtn" onclick="stopComparison()" style="display:none">■ Stop</button>
+        <button class="btn btn-secondary" onclick="newCompareArray()">↻ New Array</button>
+      </div>
+      <div class="winner-banner" id="winnerBanner" style="display:none">
+        <span class="winner-icon">🏆</span>
+        <span id="winnerText"></span>
+      </div>
+    </div>
+
+    <div class="compare-panels">
+      <!-- Panel 0 -->
+      <div class="compare-panel" id="cmpPanel0">
+        <div class="compare-panel-header">
+          <div class="compare-algo-selector" id="cmpSelector0">
+            <div class="algo-display" id="cmpDisplay0" onclick="toggleCmpDropdown(0)">
+              <span id="cmpDisplayText0">▸ Algorithm 1</span>
+              <span class="arrow">▾</span>
+            </div>
+            <div class="dropdown" id="cmpDropdown0"></div>
+          </div>
+          <span class="compare-badge" id="cmpBadge0" style="display:none"></span>
+        </div>
+        <div class="compare-bars" id="cmpBars0"></div>
+        <div class="compare-stats-row">
+          <div class="compare-stat"><span class="compare-stat-label">Comparisons</span><span class="compare-stat-val" id="cmpC0">0</span></div>
+          <div class="compare-stat"><span class="compare-stat-label">Swaps</span><span class="compare-stat-val" id="cmpS0" style="color:var(--accent2)">0</span></div>
+          <div class="compare-stat"><span class="compare-stat-label">Time</span><span class="compare-stat-val" id="cmpT0" style="color:var(--accent4)">0ms</span></div>
+        </div>
+        <div class="compare-status" id="cmpStatus0"><div class="status-dot"></div><span id="cmpStatusTxt0">Select algorithm</span></div>
+      </div>
+
+      <div class="compare-vs">VS</div>
+
+      <!-- Panel 1 -->
+      <div class="compare-panel" id="cmpPanel1">
+        <div class="compare-panel-header">
+          <div class="compare-algo-selector" id="cmpSelector1">
+            <div class="algo-display" id="cmpDisplay1" onclick="toggleCmpDropdown(1)">
+              <span id="cmpDisplayText1">▸ Algorithm 2</span>
+              <span class="arrow">▾</span>
+            </div>
+            <div class="dropdown" id="cmpDropdown1"></div>
+          </div>
+          <span class="compare-badge" id="cmpBadge1" style="display:none"></span>
+        </div>
+        <div class="compare-bars" id="cmpBars1"></div>
+        <div class="compare-stats-row">
+          <div class="compare-stat"><span class="compare-stat-label">Comparisons</span><span class="compare-stat-val" id="cmpC1">0</span></div>
+          <div class="compare-stat"><span class="compare-stat-label">Swaps</span><span class="compare-stat-val" id="cmpS1" style="color:var(--accent2)">0</span></div>
+          <div class="compare-stat"><span class="compare-stat-label">Time</span><span class="compare-stat-val" id="cmpT1" style="color:var(--accent4)">0ms</span></div>
+        </div>
+        <div class="compare-status" id="cmpStatus1"><div class="status-dot"></div><span id="cmpStatusTxt1">Select algorithm</span></div>
+      </div>
+    </div>
+
+    <!-- ══ COMPARE ANALYSIS PANEL ══ -->
+    <div class="compare-analysis" id="compareAnalysis" style="display:none">
+      <div class="analysis-tabs">
+        <button class="analysis-tab active" id="tabPrediction" onclick="showAnalysisTab('prediction')">📊 Prediction</button>
+        <button class="analysis-tab"        id="tabLive"       onclick="showAnalysisTab('live')">⚡ Live Race</button>
+        <button class="analysis-tab"        id="tabVerdict"    onclick="showAnalysisTab('verdict')">🏆 Verdict</button>
+      </div>
+      <div class="analysis-pane" id="panePrediction">
+        <div class="prediction-grid" id="predictionGrid"></div>
+        <div class="prediction-summary" id="predictionSummary"></div>
+      </div>
+      <div class="analysis-pane" id="paneLive" style="display:none">
+        <div class="live-leader" id="liveLeader">
+          <div class="leader-label">Leading by comparisons</div>
+          <div class="leader-bar-wrap">
+            <span class="leader-name" id="leaderName0">—</span>
+            <div class="leader-track"><div class="leader-fill" id="leaderFill" style="width:50%"></div></div>
+            <span class="leader-name" id="leaderName1">—</span>
+          </div>
+        </div>
+        <div class="live-steps-grid">
+          <div class="live-step-box">
+            <div class="live-step-label" id="liveLabel0">Algorithm 1</div>
+            <div class="live-step-text" id="liveStep0">—</div>
+          </div>
+          <div class="live-step-box">
+            <div class="live-step-label" id="liveLabel1">Algorithm 2</div>
+            <div class="live-step-text" id="liveStep1">—</div>
+          </div>
+        </div>
+        <div class="live-events" id="liveEvents"></div>
+      </div>
+      <div class="analysis-pane" id="paneVerdict" style="display:none">
+        <div class="verdict-placeholder" id="verdictPlaceholder">
+          <span class="verdict-ph-icon">⏳</span>
+          Run both algorithms to see the final verdict
+        </div>
+        <div class="verdict-content" id="verdictContent" style="display:none"></div>
+      </div>
+    </div>
+
+  </div><!-- /#compareMode -->
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-heart">Made with <span class="heart">❤️</span> by <span class="footer-name">Sourav</span></div>
+      <div class="footer-links">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sourav288@gmail.com" target="_blank" rel="noopener" class="footer-link" title="Send email">
+  <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <polyline points="2,4 12,13 22,4"/>
+  </svg>
+  sourav288@gmail.com
+</a>
+        <div class="footer-divider"></div>
+        <a href="https://github.com/souravlabx" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-github" title="GitHub">
+          <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          souravlabx
+        </a>
+        <div class="footer-divider"></div>
+        <a href="https://www.linkedin.com/in/sourav-ray-12469333a" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-linkedin">
+          <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Sourav Ray
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.app -->
+
+<!-- Weight Input Modal -->
+<div class="weight-modal-overlay" id="weightOverlay" style="display:none">
+  <div class="weight-modal">
+    <div class="weight-modal-title">⚖️ Edge Weight</div>
+    <input type="number" id="weightInput" class="weight-input" min="1" max="99" value="5" placeholder="1–99" />
+    <div class="weight-modal-btns">
+      <button class="btn btn-primary"   onclick="confirmWeight()">Add Edge</button>
+      <button class="b</button>
+      <button class="btn btn-secondary" onclick="cancelWeight()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
