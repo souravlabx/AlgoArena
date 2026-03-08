@@ -14,6 +14,7 @@ Algorithm Comparison Mode
 <p align="center"> <img src="compare.png" width="850"> </p> 
 Graph Algorithms
 <p align="center"> <img src="graph.png" width="850"> </p> 
+
 ________________________________________
 ✨ Features
 •	Interactive algorithm visualization
@@ -22,12 +23,13 @@ ________________________________________
 •	Adjustable array size
 •	Adjustable animation speed
 Real-time statistics
-•	Comparisons
-•	Swaps
-•	Execution time
-•	Graph algorithm visualization
-•	Modern animated UI
-•	Educational algorithm explanation system
+  •	Comparisons
+  •	Swaps
+  •	Execution time
+  •	Graph algorithm visualization
+  •	Modern animated UI
+  •	Educational algorithm explanation system
+
 ________________________________________
 🧠 Algorithms Implemented
 Sorting Algorithms
@@ -37,16 +39,19 @@ Sorting Algorithms
 •	Merge Sort
 •	Quick Sort
 •	Heap Sort
+
 ________________________________________
 Searching Algorithms
 •	Linear Search
 •	Binary Search
+
 ________________________________________
 Graph Algorithms
 •	Breadth First Search (BFS)
 •	Depth First Search (DFS)
 •	Dijkstra's Algorithm
 •	Minimum Spanning Tree
+
 ________________________________________
 ⚔️ Compare Mode
 AlgoArena includes a live comparison system where two algorithms run simultaneously.
@@ -56,6 +61,7 @@ Users can compare:
 •	Number of swaps
 •	Overall algorithm efficiency
 This helps visually demonstrate time complexity differences between algorithms.
+
 ________________________________________
 🎛 User Controls
 The interface provides multiple interactive controls:
@@ -65,6 +71,7 @@ The interface provides multiple interactive controls:
 •	Run / Reset buttons
 •	Sound toggle
 •	Compare mode switch
+
 ________________________________________
 🛠 Tech Stack
 This project is built using:
@@ -72,6 +79,7 @@ This project is built using:
 •	CSS3
 •	JavaScript (Vanilla JS)
 No external frameworks are used — everything is implemented from scratch.
+
 ________________________________________
 📂 Project Structure
 AlgoArena
@@ -83,6 +91,7 @@ AlgoArena
 ├── compare.png
 ├── graph.png
 └── README.md
+
 ________________________________________
 🎯 Purpose of the Project
 This project was built to:
