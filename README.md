@@ -140,14 +140,3 @@ https://github.com/souravlabx
 
 If you found this project useful, consider giving it a ⭐ on GitHub.
 
-# 📂 Project Structure
-
-AlgoArena
-│
-├── index.html
-├── style.css
-├── script.js
-├── visualizer.png
-├── compare.png
-├── graph.png
-└── README.md
